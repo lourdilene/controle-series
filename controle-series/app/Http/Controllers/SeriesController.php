@@ -10,7 +10,7 @@ class SeriesController extends Controller
 
         $series = ['Friends', 
         'Doutor House', 'Os pinguins de Madagascar'];
-
+        
         return view('series.index', compact('series'));
     }   
 }
