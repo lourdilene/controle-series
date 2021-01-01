@@ -11,6 +11,6 @@ class SeriesController extends Controller
         $series = ['Friends', 
         'Doutor House', 'Os pinguins de Madagascar'];
 
-        var_dump($series);
+        return view('series.index', compact('series'));
     }   
 }
