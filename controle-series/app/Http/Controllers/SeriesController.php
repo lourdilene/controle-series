@@ -9,7 +9,7 @@ class SeriesController extends Controller
     public function index(Request $request){
 
         $series = ['Friends', 
-        'Doutor House', 'Os pinguins de Madagascar'];
+        'Doutor House', 'Os pinguins de Madagascar', 'De férias com o Ex'];
         
         return view('series.index', compact('series'));
     }   
