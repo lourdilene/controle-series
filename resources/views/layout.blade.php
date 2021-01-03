@@ -10,13 +10,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Séries</h1>
-        <a href="series/criar" class="btn btn-dark mb-2">Adicionar</a>
-        <ul class="list-group">
-        <?php foreach($series as $serie):?>
-                <li class="list-group-item"><?= $serie; ?></li>
-        <?php endforeach;?>
-        </ul>
+        <h1>@yield('cabecalho')</h1>
+        @yield('conteudo')
     </div>
 </body>
 </html>
