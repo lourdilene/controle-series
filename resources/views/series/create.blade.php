@@ -36,6 +36,6 @@ Adicionar Série
 
     </div>
 
-    <button class="btn btn-primary">Adicionar</button>
+    <button class="btn btn-primary mt-2">Adicionar</button>
 </form>
 @endsection
