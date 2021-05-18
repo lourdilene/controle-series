@@ -24,14 +24,14 @@ class RemovedorDeSerie
         return $nomeSerie;
     }
 
-    public function removerTemporadas($serie): void{
+    private function removerTemporadas($serie): void{
         $serie->temporadas->each(function (Temporada $temporada){            
             $this->removerEpisodios($temporada);
             $temporada->delete();
         });
     }
 
-    public function removerEpisodios(Temporada $temporada): void{
+    private function removerEpisodios(Temporada $temporada): void{
         $temporada->episodios->each(function (Episodio $episodio){
             $episodio->delete();
         });
