@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Serie;
-use App\Episodio;
+use App\Episode;
 use App\Http\Requests\SeriesFormRequest;
-use App\Services\{CriadorDeSerie, RemovedorDeSerie};
-use App\Temporada;
+use App\Services\{CreatorSerie, RemoverSerie};
+use App\Season;
 
 class SeriesController extends Controller
 {
     public function index(Request $request){
 
-        $series = Serie::query()
-        ->orderby('nome')
+        $series = Serie::orderby('name')
         ->get();
 
         $mensagem = $request->session()->get('mensagem');
@@ -28,9 +27,9 @@ class SeriesController extends Controller
 
     public function store(
         SeriesFormRequest $request, 
-        CriadorDeSerie $criadorDeSerie){
+        CreatorSerie $creatorSerie){
         
-        $serie = $criadorDeSerie->criarSerie(
+        $serie = $creatorSerie->createSerie(
             $request->nome, 
             $request->qtd_temporadas, 
             $request->ep_por_temporada);
@@ -43,15 +42,22 @@ class SeriesController extends Controller
         return redirect()->route('listar_series'); 
     }
 
-    public function destroy(Request $request, RemovedorDeSerie $removedorDeSerie){        
+    public function destroy(Request $request, RemoverSerie $removerSerie){        
         
-        $nomeSerie = $removedorDeSerie->removerSerie($request->id);
+        $nomeSerie = $removerSerie->removerSerie($request->id);
 
         $request->session()
             ->flash('mensagem',
             "Série $nomeSerie removida com sucesso"
         );
         return redirect()->route('listar_series');
+    }
+
+    public function editaNome($id, Request $request){
+        $novoNome = $request->nome;
+        $serie = Serie::find($id);
+        $serie->nome = $novoNome;
+        $serie->save();
     }
 }
 

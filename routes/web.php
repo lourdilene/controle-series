@@ -24,4 +24,8 @@ Route::get('/series/criar', 'SeriesController@create')
 Route::post('/series/criar', 'SeriesController@store');
 Route::delete('/series/{id}', 'SeriesController@destroy');
 
-Route::get('series/{serieId}/temporadas','TemporadasController@index');
+Route::get('series/{serieId}/seasons','SeasonsController@index');
+Route::post('series/{id}/editaNome','SeriesController@editaNome');
+Route::get('/seasons/{season}/episodes', 'EpisodesController@index');
+
+Route::post('/season/{season}/episodes/watch', 'EpisodesController@watch');

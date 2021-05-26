@@ -6,14 +6,14 @@ use App\Serie;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\BinaryOp\Concat;
 
-class TemporadasController extends Controller
+class SeasonsController extends Controller
 {
     public function index(int $serieId){
         $serie = Serie::find($serieId);
 
-        $temporadas = $serie->temporadas;
+        $seasons = $serie->seasons;
 
-        return view('temporadas.index',
-            compact('serie', 'temporadas'));
+        return view('seasons.index',
+            compact('serie', 'seasons'));
     }
 }
