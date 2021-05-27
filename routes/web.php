@@ -29,3 +29,9 @@ Route::post('series/{id}/editaNome','SeriesController@editaNome');
 Route::get('/seasons/{season}/episodes', 'EpisodesController@index');
 
 Route::post('/season/{season}/episodes/watch', 'EpisodesController@watch');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
