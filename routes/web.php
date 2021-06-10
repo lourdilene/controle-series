@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +20,34 @@ Route::get('/', function () {
 
 Route::get('/series', 'SeriesController@index')
     ->name('listar_series');
+
 Route::get('/series/criar', 'SeriesController@create')
-    ->name('form_criar_serie');
-Route::post('/series/criar', 'SeriesController@store');
-Route::delete('/series/{id}', 'SeriesController@destroy');
+    ->name('form_criar_serie')
+    ->middleware('auth');
+
+Route::post('/series/criar', 'SeriesController@store')
+    ->middleware('auth');
+
+Route::delete('/series/{id}', 'SeriesController@destroy')
+    ->middleware('auth');
 
 Route::get('series/{serieId}/seasons','SeasonsController@index');
-Route::post('series/{id}/editaNome','SeriesController@editaNome');
+
+Route::post('series/{id}/editaNome','SeriesController@editaNome')
+    ->middleware('auth');
+
 Route::get('/seasons/{season}/episodes', 'EpisodesController@index');
 
-Route::post('/season/{season}/episodes/watch', 'EpisodesController@watch');
+Route::post('/season/{season}/episodes/watch', 'EpisodesController@watch')
+    ->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/sair', function(){
+    Auth::logout();
+    return redirect('/login');
+});

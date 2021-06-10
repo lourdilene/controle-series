@@ -1,4 +1,5 @@
 @extends('layout')
+@extends('layouts.app')
 
 @section('cabecalho')
 Temporadas de {{$serie->name}}
