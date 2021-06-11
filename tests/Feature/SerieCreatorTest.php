@@ -10,9 +10,11 @@ use App\Serie;
 
 class SerieCreatorTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testCreateSerie()
     {        
-        $serieName = 'Nome de teste';
+        $serieName = 'Nome de teste banco 18';
         $serieCreator = new CreatorSerie();
         $serieCreated = $serieCreator->createSerie($serieName,1,1);
 

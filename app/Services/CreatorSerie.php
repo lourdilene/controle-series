@@ -21,14 +21,14 @@ class CreatorSerie
     }
 
     private function createSeasons(int $qtdSeasons, int $epBySeason, Serie $serie): void{
-        for ($i=1; $i < $qtdSeasons; $i++) {
+        for ($i=1; $i <= $qtdSeasons; $i++) {
             $season = $serie->seasons()->create(['number' => $i]);
             $this->createEpisodes($epBySeason, $season);           
         }
     }
 
     private function createEpisodes(int $epBySeason, Season $season): void{
-        for ($j=1; $j < $epBySeason; $j++) { 
+        for ($j=1; $j <= $epBySeason; $j++) { 
             $episode = $season->episodes()->create(['number' => $j]);
         }
     }
